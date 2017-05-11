@@ -4,8 +4,8 @@ import { ensureItemIds } from './ensure-item-ids'
 import { MenuEvent } from './menu-event'
 
 export function buildDefaultMenu(sharedProcess: SharedProcess): Electron.Menu {
-  const template = new Array<Electron.MenuItemOptions>()
-  const separator: Electron.MenuItemOptions = { type: 'separator' }
+  const template = new Array<Electron.MenuItemConstructorOptions>()
+  const separator: Electron.MenuItemConstructorOptions = { type: 'separator' }
 
   if (__DARWIN__) {
     template.push({
@@ -34,7 +34,7 @@ export function buildDefaultMenu(sharedProcess: SharedProcess): Electron.Menu {
     })
   }
 
-  const fileMenu: Electron.MenuItemOptions = {
+  const fileMenu: Electron.MenuItemConstructorOptions = {
     label: __DARWIN__ ? 'File' : '&File',
     submenu: [
       {
@@ -63,7 +63,7 @@ export function buildDefaultMenu(sharedProcess: SharedProcess): Electron.Menu {
   }
 
   if (!__DARWIN__) {
-    const fileItems = fileMenu.submenu as Electron.MenuItemOptions[]
+    const fileItems = fileMenu.submenu as Electron.MenuItemConstructorOptions[]
 
     fileItems.push(
       separator,
@@ -253,21 +253,21 @@ export function buildDefaultMenu(sharedProcess: SharedProcess): Electron.Menu {
     })
   }
 
-  const contactSupportItem: Electron.MenuItemOptions = {
+  const contactSupportItem: Electron.MenuItemConstructorOptions = {
     label: __DARWIN__ ? 'Contact GitHub Support…' : 'Contact GitHub &support…',
     click () {
       shell.openExternal('https://github.com/support')
     },
   }
 
-  const submitIssueItem: Electron.MenuItemOptions = {
+  const submitIssueItem: Electron.MenuItemConstructorOptions = {
     label: __DARWIN__ ? 'Report Issue...' : 'Report issue...',
     click() {
       shell.openExternal('https://github.com/desktop/desktop/issues/new')
     },
   }
 
-  const showLogsItem: Electron.MenuItemOptions = {
+  const showLogsItem: Electron.MenuItemConstructorOptions = {
     label: __DARWIN__ ? 'Show Logs In Finder' : 'S&how logs in Explorer',
     click() {
       const path = app.getPath('userData')
@@ -282,7 +282,7 @@ export function buildDefaultMenu(sharedProcess: SharedProcess): Electron.Menu {
   ]
 
   if (__DEV__) {
-    const throwUnhandledError: Electron.MenuItemOptions = {
+    const throwUnhandledError: Electron.MenuItemConstructorOptions = {
       label: 'Boomtown…',
       click () {
         throw new Error('Boomtown!')
