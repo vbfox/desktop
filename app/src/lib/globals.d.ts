@@ -20,12 +20,14 @@ declare const __RELEASE_ENV__: 'production' | 'beta' | 'test' | 'development'
 // these changes should be pushed into the Electron declarations
 
 declare namespace NodeJS {
+  // tslint:disable-next-line:interface-name
   interface Process extends EventEmitter {
     on(event: 'uncaughtException', listener: (error: Error) => void): this
   }
 }
 
 declare namespace Electron {
+  // tslint:disable-next-line:interface-name
   interface MenuItem {
     accelerator?: Electron.Accelerator
     submenu?: Electron.Menu
@@ -34,6 +36,7 @@ declare namespace Electron {
   }
 
   // these methods have been marked with optional parameters, where we hadn't assumed this before
+  // tslint:disable-next-line:interface-name
   interface App extends EventEmitter {
     makeSingleInstance(callback: (argv: string[], workingDirectory: string) => void): void
 
