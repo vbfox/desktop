@@ -15,3 +15,21 @@ declare const __WIN32__: boolean
 
 /** The environment for which the release was created. */
 declare const __RELEASE_ENV__: 'production' | 'beta' | 'test' | 'development'
+
+
+// these changes should be pushed into the Electron declarations
+
+declare namespace NodeJS {
+  interface Process extends EventEmitter {
+    on(event: 'uncaughtException', listener: (error: Error) => void): this;
+  }
+}
+
+declare namespace Electron {
+  interface MenuItem {
+    accelerator?: Electron.Accelerator;
+    submenu?: Electron.Menu;
+    role?: string;
+    type: 'normal' | 'separator' | 'submenu' | 'checkbox' | 'radio'
+  }
+}
