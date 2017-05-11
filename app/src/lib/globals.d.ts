@@ -29,16 +29,16 @@ declare namespace NodeJS {
 declare namespace Electron {
   // tslint:disable-next-line:interface-name
   interface MenuItem {
-    accelerator?: Electron.Accelerator
-    submenu?: Electron.Menu
-    role?: string
-    type: 'normal' | 'separator' | 'submenu' | 'checkbox' | 'radio'
+    readonly accelerator?: Electron.Accelerator
+    readonly submenu?: Electron.Menu
+    readonly role?: string
+    readonly type: 'normal' | 'separator' | 'submenu' | 'checkbox' | 'radio'
   }
 
   // these methods have been marked with optional parameters, where we hadn't assumed this before
   // tslint:disable-next-line:interface-name
   interface App extends EventEmitter {
-    makeSingleInstance(callback: (argv: string[], workingDirectory: string) => void): void
+    makeSingleInstance(callback: (argv: string[], workingDirectory: string) => void): boolean
 
     on(event: 'open-url', listener: (event: Electron.Event, url: string) => void): this
   }
