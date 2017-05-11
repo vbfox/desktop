@@ -32,4 +32,9 @@ declare namespace Electron {
     role?: string;
     type: 'normal' | 'separator' | 'submenu' | 'checkbox' | 'radio'
   }
+
+  // these methods have been marked with optional parameters, where we hadn't assumed this before
+  interface App {
+    makeSingleInstance(callback: (argv: string[], workingDirectory: string) => void): void;
+  }
 }
